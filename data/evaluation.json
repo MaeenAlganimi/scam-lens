@@ -1,0 +1,135 @@
+{
+  "seed": 42,
+  "testRatio": 0.2,
+  "positiveClass": "spam",
+  "threshold": 0.5,
+  "notes": [
+    "Exact duplicate texts in the SMS Spam Collection were removed before the split so a message cannot sit in both train and test.",
+    "The split is stratified by language and label with seed 42. About 20% of each group is held out.",
+    "The shipped model is trained on the UCI training split plus the handwritten training split. Holdout rows are never used for training or feature selection.",
+    "Spam is the positive class. A message is predicted spam when P(spam) is at least 0.5.",
+    "The handwritten holdout is small, especially once it is broken out by language. Those rates are noisy."
+  ],
+  "uci": {
+    "rawLines": 5574,
+    "uniqueMessages": 5171,
+    "duplicateLinesRemoved": 403,
+    "train": {
+      "total": 4136,
+      "ham": 3614,
+      "spam": 522
+    },
+    "test": {
+      "total": 1035,
+      "ham": 904,
+      "spam": 131
+    }
+  },
+  "handwritten": {
+    "train": {
+      "total": 96,
+      "ham": 48,
+      "spam": 48
+    },
+    "test": {
+      "total": 24,
+      "ham": 12,
+      "spam": 12
+    }
+  },
+  "vocabularySize": 1521,
+  "selection": "chi-square global top 1500, plus top 150 Arabic and Spanish tokens",
+  "uciOnlyBaseline": {
+    "description": "Trained only on the UCI training split and scored on the UCI holdout.",
+    "vocabularySize": 1500,
+    "holdout": {
+      "count": 1035,
+      "spam": 131,
+      "ham": 904,
+      "accuracy": 0.9807,
+      "precision": 0.9173,
+      "recall": 0.9313,
+      "f1": 0.9242,
+      "truePositive": 122,
+      "falsePositive": 11,
+      "trueNegative": 893,
+      "falseNegative": 9,
+      "threshold": 0.5
+    }
+  },
+  "shippedModel": {
+    "description": "Trained on the UCI training split plus the handwritten training split. This is the model in the app.",
+    "uciHoldout": {
+      "count": 1035,
+      "spam": 131,
+      "ham": 904,
+      "accuracy": 0.9807,
+      "precision": 0.9237,
+      "recall": 0.9237,
+      "f1": 0.9237,
+      "truePositive": 121,
+      "falsePositive": 10,
+      "trueNegative": 894,
+      "falseNegative": 10,
+      "threshold": 0.5
+    },
+    "handwrittenHoldout": {
+      "count": 24,
+      "spam": 12,
+      "ham": 12,
+      "accuracy": 0.9583,
+      "precision": 1,
+      "recall": 0.9167,
+      "f1": 0.9565,
+      "truePositive": 11,
+      "falsePositive": 0,
+      "trueNegative": 12,
+      "falseNegative": 1,
+      "threshold": 0.5
+    },
+    "handwrittenHoldoutByLanguage": {
+      "en": {
+        "count": 8,
+        "spam": 4,
+        "ham": 4,
+        "accuracy": 0.875,
+        "precision": 1,
+        "recall": 0.75,
+        "f1": 0.8571,
+        "truePositive": 3,
+        "falsePositive": 0,
+        "trueNegative": 4,
+        "falseNegative": 1,
+        "threshold": 0.5
+      },
+      "ar": {
+        "count": 8,
+        "spam": 4,
+        "ham": 4,
+        "accuracy": 1,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "truePositive": 4,
+        "falsePositive": 0,
+        "trueNegative": 4,
+        "falseNegative": 0,
+        "threshold": 0.5
+      },
+      "es": {
+        "count": 8,
+        "spam": 4,
+        "ham": 4,
+        "accuracy": 1,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "truePositive": 4,
+        "falsePositive": 0,
+        "trueNegative": 4,
+        "falseNegative": 0,
+        "threshold": 0.5
+      }
+    }
+  }
+}
